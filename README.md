@@ -7,11 +7,11 @@ Simply select the word or function you want to search, then right click and clic
 # See it in Action
 When you select the text and right click you'll see `Search with Microsoft Terminology` in your drop-down menu
 
-![drop-down-menu](/resources/drop-down-menu.png?raw=true)
+![drop-down-menu](https://github.com/bugron/microsoft-terminology-search/blob/main/resources/drop-down-menu.png?raw=true)
 
 ## How it opens in VSCode
 
-![browser-query-results](/resources/search-results.png?raw=true)
+![browser-query-results](https://github.com/bugron/microsoft-terminology-search/blob/main/resources/search-results.png?raw=true)
 
 ### If you encounter any issues, please let me know [here](https://www.github.com/bugron/microsoft-terminology-search).
 
