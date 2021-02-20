@@ -1,27 +1,27 @@
 {
-  "name": "google-search",
-  "displayName": "google-search",
-  "description": "Google your doubts, errors and confusions!",
+  "name": "microsoft-terminology-search",
+  "displayName": "Microsoft Terminology Search",
+  "description": "Search terms at Microsoft Terminology Search",
   "version": "0.0.1",
-  "publisher": "kameshkotwani",
+  "publisher": "bugron",
   "engines": {
     "vscode": "^1.31.0"
   },
   "author": {
-    "name": "Kamesh Kotwani",
-    "url": "https://www.github.com/kameshkotwani"
+    "name": "Arsen Melikyan",
+    "url": "https://www.github.com/bugron"
   },
   "icon": "resources/icon.png",
-  "homepage": "https://www.github.com/kameshkotwani/google-search",
+  "homepage": "https://www.github.com/bugron/microsoft-terminology-search",
   "repository": {
     "type": "git",
-    "url": "https://www.github.com/kameshkotwani/google-search"
+    "url": "https://www.github.com/bugron/microsoft-terminology-search"
   },
   "categories": [
     "Other"
   ],
   "activationEvents": [
-    "onCommand:extension.googleSearch"
+    "onCommand:extension.terminologySearch"
   ],
   "main": "./extension.js",
   "contributes": {
@@ -29,38 +29,64 @@
       "editor/context": [
         {
           "when": "editorHasSelection",
-          "command": "extension.googleSearch",
-          "group": "navigation"
+          "command": "extension.terminologySearch",
+          "group": "navigation@-1"
         }
       ]
     },
     "commands": [
       {
-        "command": "extension.googleSearch",
-        "title": "Search with Google"
+        "command": "extension.terminologySearch",
+        "title": "Search with Microsoft Terminology"
       }
     ],
     "configuration": {
-      "title": "Google Search Config",
+      "title": "Microsoft Terminology Search",
       "type": "object",
       "properties": {
-        "googleSearch.QueryTemplate": {
+        "terminologySearch.TranslateFrom": {
           "type": "string",
-          "default": "https://www.google.com/search?q=%SELECTION%",
-          "description": "Search Query"
+          "default": "en-US",
+          "description": "Translate from"
+        },
+        "terminologySearch.TranslateInto": {
+          "type": "string",
+          "default": "ru-RU",
+          "description": "Translate into"
+        },
+        "terminologySearch.SearchOperator": {
+          "type": "string",
+          "default": "Exact",
+          "enum": [
+            "Exact",
+            "Contains",
+            "AnyWord"
+          ],
+          "description": "Match type"
+        },
+        "terminologySearch.ConfidenceLevel": {
+          "type": "number",
+          "default": "70",
+          "description": "Minimum confidence level"
         }
       }
     }
   },
   "scripts": {
     "postinstall": "node ./node_modules/vscode/bin/install",
-    "test": "node ./node_modules/vscode/bin/test"
+    "test": "node ./node_modules/vscode/bin/test",
+    "build": "vsce package"
   },
   "devDependencies": {
-    "typescript": "^3.3.1",
-    "vscode": "^1.1.28",
-    "eslint": "^5.13.0",
+    "@types/mocha": "^2.2.42",
     "@types/node": "^10.12.21",
-    "@types/mocha": "^2.2.42"
+    "eslint": "^7.20.0",
+    "typescript": "^3.3.1",
+    "vsce": "^1.85.0",
+    "vscode": "^1.1.37"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "xml2js": "^0.4.23"
   }
 }
