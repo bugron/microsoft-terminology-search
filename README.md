@@ -13,6 +13,8 @@ When you select the text and right click you'll see `Search with Microsoft Termi
 
 ![browser-query-results](https://github.com/bugron/microsoft-terminology-search/blob/main/resources/search-results.png?raw=true)
 
-### If you encounter any issues, please let me know [here](https://www.github.com/bugron/microsoft-terminology-search).
+### If you encounter any issues, please let me know [here](https://github.com/bugron/microsoft-terminology-search/issues).
 
 #### This extension is based on the source code of [google-search](https://github.com/kameshkotwani/google-search/).
+
+Extension's icon is made by [Dimitry Miroliubov](https://www.flaticon.com/authors/dimitry-miroliubov) from [www.flaticon.com](https://www.flaticon.com/).
