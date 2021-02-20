@@ -61,7 +61,6 @@ function terminologySearch() {
     .replace('{{languageInto}}', languageInto || 'ru-RU')
     .replace('{{searchOperator}}', searchOperator || 'Exact');
 
-  console.log('requestXML', requestXML);
   // @ts-ignore
   axios.post(soapURL, requestXML, {
     headers: {
@@ -70,16 +69,13 @@ function terminologySearch() {
     }
   })
     .then(({ data: xmlData }) => {
-      console.log('xmlData', xmlData);
       return xml2js.parseStringPromise(xmlData, { explicitArray: false, ignoreAttrs: true });
     })
     .then(data => {
       const allMatches = data['s:Envelope']['s:Body'].GetTranslationsResponse.GetTranslationsResult.Match;
-      console.log('Parsed XML', allMatches);
       const translations = allMatches
         .filter(match => parseInt(match.ConfidenceLevel, 10) >= confidenceLevel)
         .map(match => ({ text: match.OriginalText, translation: match.Translations.Translation.TranslatedText }));
-      console.log('translations', translations);
       const panel = vscode.window.createWebviewPanel(
         'terminologySearch', // Identifies the type of the webview. Used internally
         'Terminology Search Results', // Title of the panel displayed to the user
@@ -91,7 +87,6 @@ function terminologySearch() {
       panel.webview.html = getWebviewContent(translations);
     })
     .catch(err => {
-      console.log(err);
       vscode.window.showErrorMessage(
         'An error occured! ' + err.message
       );
