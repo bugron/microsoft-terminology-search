@@ -101,12 +101,21 @@ function getWebviewContent(translations) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    table, th, td {
+      border: 1px solid black;
+    }
+    th, td {
+      text-align: left;
+    }
+  </style>
   <title>Terminology Search Results</title>
 </head>
 <body>
-  <ol>
-    ${translations.map(t => `<li>${t.text}: ${t.translation}</li>`).join('\n')}
-  </ol>
+  <table>
+    <thead><tr><th>Original text</th><th>Translation</th></tr></thead>
+    ${translations.map(t => `<tr><td>${t.text}</td><td>${t.translation}</td></tr>`).join('\n')}
+  </table>
 </body>
 </html>`;
 }
