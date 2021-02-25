@@ -2,7 +2,7 @@
   "name": "microsoft-terminology-search",
   "displayName": "Microsoft Terminology Search",
   "description": "Search terms at Microsoft Terminology Search",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "publisher": "bugron",
   "engines": {
     "vscode": "^1.31.0"
@@ -76,7 +76,7 @@
     "postinstall": "node ./node_modules/vscode/bin/install",
     "test": "node ./node_modules/vscode/bin/test",
     "build": "vsce package",
-    "updateLocks": "npm install --package-lock-only && pnpm install"
+    "updateLocks": "npm install --package-lock-only"
   },
   "devDependencies": {
     "@types/mocha": "^2.2.42",
