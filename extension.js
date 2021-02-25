@@ -18,7 +18,7 @@ const xml = `
                 <TranslationSource>Terms</TranslationSource>
                 <TranslationSource>UiStrings</TranslationSource>
             </sources>
-            <unique>false</unique>
+            <unique>true</unique>
             <maxTranslations>20</maxTranslations>
             <includeDefinitions>true</includeDefinitions>
         </GetTranslations>
@@ -68,14 +68,24 @@ function terminologySearch() {
       'SOAPAction': 'http://api.terminology.microsoft.com/terminology/Terminology/GetTranslations',
     }
   })
-    .then(({ data: xmlData }) => {
-      return xml2js.parseStringPromise(xmlData, { explicitArray: false, ignoreAttrs: true });
+    .then(({ data }) => {
+      return xml2js.parseStringPromise(data, { explicitArray: false, ignoreAttrs: true });
     })
     .then(data => {
       const allMatches = data['s:Envelope']['s:Body'].GetTranslationsResponse.GetTranslationsResult.Match;
+
+      if (!allMatches || !allMatches.length) {
+        return vscode.window.showErrorMessage(`No results are found for the term "${selectedText}"`);
+      }
+
       const translations = allMatches
         .filter(match => parseInt(match.ConfidenceLevel, 10) >= confidenceLevel)
         .map(match => ({ text: match.OriginalText, translation: match.Translations.Translation.TranslatedText }));
+
+      if (!translations || !translations.length) {
+        return vscode.window.showErrorMessage(`No results are found. Try altering extension's settings`);
+      }
+
       const panel = vscode.window.createWebviewPanel(
         'terminologySearch', // Identifies the type of the webview. Used internally
         'Terminology Search Results', // Title of the panel displayed to the user
