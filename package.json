@@ -2,7 +2,7 @@
   "name": "microsoft-terminology-search",
   "displayName": "Microsoft Terminology Search",
   "description": "Search terms at Microsoft Terminology Search",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "publisher": "bugron",
   "engines": {
     "vscode": "^1.31.0"
