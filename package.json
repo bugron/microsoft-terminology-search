@@ -23,7 +23,7 @@
   "activationEvents": [
     "onCommand:extension.terminologySearch"
   ],
-  "main": "./extension.js",
+  "main": "./dist/extension",
   "contributes": {
     "menus": {
       "editor/context": [
@@ -430,7 +430,10 @@
   "scripts": {
     "postinstall": "node ./node_modules/vscode/bin/install",
     "test": "node ./node_modules/vscode/bin/test",
-    "build": "vsce package"
+    "vscode:prepublish": "webpack --mode production",
+    "webpack": "webpack --mode development",
+    "webpack-dev": "webpack --mode development --watch",
+    "package": "vsce package"
   },
   "devDependencies": {
     "@types/mocha": "^2.2.42",
@@ -438,7 +441,9 @@
     "eslint": "^7.20.0",
     "typescript": "^3.3.1",
     "vsce": "^1.85.0",
-    "vscode": "^1.1.37"
+    "vscode": "^1.1.37",
+    "webpack": "^5.24.2",
+    "webpack-cli": "^4.5.0"
   },
   "dependencies": {
     "axios": "^0.21.1",
