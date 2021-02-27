@@ -56,7 +56,7 @@
         },
         "terminologySearch.SearchOperator": {
           "type": "string",
-          "default": "Exact",
+          "default": "Contains",
           "enum": [
             "Exact",
             "Contains",
